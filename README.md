@@ -1,169 +1,181 @@
-Blood Donation Management System (BBDMS)
-A web‑based Blood Donation Management System built with PHP and MySQL. It allows users to register as blood donors, search donors by blood group and city, submit queries, and provides an admin dashboard to manage donors, blood groups, CMS pages, contact queries, and activity logs.
+# 🩸 Blood Donation Management System (BBDMS)
 
-✨ Features
-Public Module
-Donor registration with details like name, blood group, age, city, contact info.
+A complete **Web-based Blood Donation Management System** built using **PHP and MySQL**.  
+The system enables donors to register, users to search based on blood group & city, and provides an **admin dashboard** to manage donors, queries, pages, and logs.
 
-Search donors by blood group and city (only active donors).
+---
 
-“Contact Us” form for general queries.
+## 🚀 Features
 
-Informational pages like “About Us” and “Why Become a Donor”.
+### 👥 Public Module
+- Donor registration (name, age, contact, blood group, address).
+- Search donors by **blood group + city** (active donors only).
+- Contact form for public queries.
+- Content pages: **About Us, Why Become a Donor**.
 
-Admin Module
-Secure admin login and session management.
+---
 
-Dashboard with key stats (total donors, blood groups, queries, logs, etc.).
+### 🔐 Admin Module
+- Secure admin login (session-based authentication).
+- Dashboard showing:
+  - Total donors
+  - Blood groups count
+  - Messages
+  - Activity logs
+- Manage:
+  - 🩸 Donors (activate/deactivate, delete)
+  - 🧬 Blood groups (add/delete)
+  - 📩 Contact queries (view, mark read, delete)
+  - 📄 CMS pages (rich-text editor support)
+  - 🔍 Automatic donor activity logs (added/updated/deleted)
 
-Manage donors (view, hide/show using status, delete).
+---
 
-Manage blood groups (add / delete).
+## 🛢️ Database & DBMS Concepts
 
-Manage contact queries (view, mark as read, delete).
+✔ Normalized relational schema  
+✔ Foreign keys  
+✔ Stored procedures  
+✔ Functions  
+✔ Triggers  
+✔ Joins, nested queries & aggregates  
 
-Manage CMS pages (About Us, Why Become Donor) using a rich‑text editor.
+### Stored Procedures:
+- `AddDonor`
+- `UpdateDonorStatus`
+- `SearchDonors`
 
-View donor activity logs (added / updated / deleted) generated automatically via database triggers.
+### SQL Functions:
+- `GetDonorName(donorId)`
+- `CountByBloodGroup(bloodGroup)`
 
-Database / DBMS Concepts
-Normalized relational schema with foreign keys.
+### Triggers:
+- `after_donor_insert`  
+- `after_donor_update`  
+- `after_donor_delete`
 
-Stored procedures:
+---
 
-AddDonor – insert a new donor.
+## 🧱 Tech Stack
 
-UpdateDonorStatus – hide/show a donor.
+| Layer | Technologies |
+|-------|-------------|
+| Frontend | HTML5, CSS3, Bootstrap 5, jQuery, JavaScript, DataTables |
+| Backend | PHP (PDO) |
+| Database | MySQL |
+| Server | Apache (XAMPP/WAMP/LAMP) |
 
-SearchDonors – search donors by blood group and city.
+---
 
-Functions:
+## 🗄️ Database Schema Overview
 
-GetDonorName(donorId)
+| Table | Purpose |
+|-------|---------|
+| `admin` | Admin login credentials |
+| `tblbloodgroup` | Available blood groups |
+| `tblblooddonars` | Donor details |
+| `tbldependents` | Donor’s family details |
+| `tblcontactusinfo` | Website contact info |
+| `tblcontactusquery` | User-submitted messages |
+| `tblpages` | CMS page content |
+| `donor_logs` | Tracks changes via triggers |
 
-CountByBloodGroup(bloodGroupName)
+👉 Full schema available in: `sql/blood_donation.sql`
 
-Triggers on tblblooddonars:
+---
 
-after_donor_insert
+## 🧪 Getting Started
 
-after_donor_update
+### 📌 Prerequisites
+- Installed: **XAMPP / WAMP / LAMP**
+- PHP **7.4 or later**
+- MySQL **5.7 or later**
 
-after_donor_delete
+---
 
-Example nested, join and aggregate queries for reporting.
+### 📥 Installation
 
-🧱 Tech Stack
-Frontend: HTML5, CSS3, Bootstrap 5, JavaScript, jQuery, DataTables
+#### 1️⃣ Clone the repository
 
-Backend: PHP (PDO)
+```sh
+git clone https://github.com/<your-username>/BLOOD-DONATION-MANAGEMENT-SYSTEM.git
 
-Database: MySQL
+#### 2️⃣ Move project to server directory:
+C:\xampp\htdocs\BBDMS
 
-Server: Apache (XAMPP / WAMP / LAMP)
+3️⃣ Import database
 
-📂 Database Design
-Main tables:
+Open: http://localhost/phpmyadmin
 
-admin(id, UserName, Password, updationDate)
+Create a DB: blood_donation
 
-tblbloodgroup(id, BloodGroup, PostingDate)
+Import: sql/blood_donation.sql
 
-tblblooddonars(id, FullName, MobileNumber, EmailId, Gender, Age, BloodGroup, Address, Message, PostingDate, status)
+4️⃣ Configure connection
 
-tbldependents(id, DonorID, DependentName, Relationship, Age)
+Check file:
 
-tblcontactusinfo(id, Address, EmailId, ContactNo)
+includes/config.php
 
-tblcontactusquery(id, name, EmailId, ContactNumber, Message, PostingDate, status)
 
-tblpages(id, PageName, type, detail)
+Update DB host, user, and password (if required).
 
-donor_logs(log_id, donor_id, action, timestamp)
+▶ Run Application
+URL	Access
+http://localhost/BBDMS/	Public website
+http://localhost/BBDMS/admin/	Admin portal
+🛂 Default Admin Login
+Username	Password
+nandini	nandini1012
 
-The full schema, sample data, procedures, functions and triggers are in sql/blood_donation.sql.
+⚠ Change it after first login for security.
 
-🚀 Getting Started
-Prerequisites
-XAMPP / WAMP / LAMP stack installed.
+📷 Screenshots
 
-PHP 7.4+ and MySQL 5.7+ (or compatible).
+(Add real screenshots to make it more professional)
 
-Installation
-Clone the repository:
+Home Page
 
-bash
-git clone https://github.com/<your-username>/<your-repo-name>.git
-Move the project into your server directory (e.g. C:\xampp\htdocs\BBDMS).
+Become a Donor Form
 
-Start Apache and MySQL from your local server control panel.
+Search Results
 
-Create the database:
+Admin Login
 
-Open http://localhost/phpmyadmin
-
-Create a database named blood_donation
-
-Import sql/blood_donation.sql into this database.
-
-Configure DB connection in includes/config.php if needed (host, username, password).
-
-Access the app:
-
-Public site: http://localhost/BBDMS/
-
-Admin panel: http://localhost/BBDMS/admin/
-
-Default admin credentials (change in DB after first login):
-
-text
-Username: nandini
-Password: nandini1012
-🖼️ Screenshots
-(Add images from your screenshots/ folder with captions, e.g.)
-
-Home page
-
-Become a Donor page
-
-Search Donors results
-
-Admin login
-
-Admin dashboard
+Admin Dashboard
 
 Manage Donors
 
-Manage Blood Groups
+Activity Logs
 
-Manage Contact Queries
+CMS Editor
 
-Manage Pages (CMS)
-
-Donor Activity Logs
-
-📚 Project Structure
-text
+📁 Project Structure
 BBDMS/
-├─ admin/              # admin-side PHP pages
-├─ includes/           # config and common include files
-├─ css/, js/           # static assets
+├─ admin/               
+├─ includes/           
+├─ css/ | js/          
 ├─ sql/blood_donation.sql
-├─ index.php           # public home
-└─ README.md
-✅ Learning Outcomes
+├─ index.php           
+└─ README.md           
+
+🎓 Learning Outcomes
+
 This project demonstrates:
 
-Complete DBMS mini‑project lifecycle (ER model → schema → SQL → UI).
+🔹 Complete DBMS Mini-project workflow
 
-Use of stored procedures, functions, and triggers in a real application.
+🔹 SQL functions, triggers & stored procedures
 
-Secure PHP CRUD operations with prepared statements (PDO).
+🔹 Secure PHP CRUD with PDO
 
-Integration of a relational database with a modern, responsive frontend.
+🔹 Database-driven dynamic web application
 
-📄 License
-You can add your preferred license here, for example:
+🔹 Real-world schema design and server integration
 
+📝 License
+
+This project is open-source under the MIT License.
+You are free to modify and use it for academic or personal purposes.
 This project is licensed under the MIT License – see the LICENSE file for details.
 
